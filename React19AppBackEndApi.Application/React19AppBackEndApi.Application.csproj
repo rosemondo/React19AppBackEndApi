@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\React19AppBackEndApi.Domain\React19AppBackEndApi.Domain.csproj" />
+    <ProjectReference Include="..\React19AppBackEndApi.Persistence\React19AppBackEndApi.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
