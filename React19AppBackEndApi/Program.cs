@@ -1,6 +1,8 @@
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using React19AppBackEndApi.Application.Core;
+using React19AppBackEndApi.Application.Activities.Queries;
 using React19AppBackEndApi.Persistence;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +19,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
+builder.Services.AddCors();
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<GetActivityList.Handler>());
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+.WithOrigins("http://localhost:3000", "https://localhost:3000"));
 
 app.MapControllers();
 
